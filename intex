@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amit Singh Chandel - Himalayan Environmental Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glacier-blue: #1e3a8a;
+            --ice-white: #f0f9ff;
+            --snow-crystal: #e0f2fe;
+            --mountain-purple: #6366f1;
+            --sunset-orange: #f59e0b;
+            --glacier-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --ice-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --storm-gradient: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            --nature-green: #10b981;
+            --earth-brown: #92400e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: var(--ice-white);
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--storm-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+
+        .mountain-loader {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: mountainRise 2s ease-in-out infinite;
+        }
+
+        @keyframes mountainRise {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .mountain-shape {
+            position: absolute;
+            background: linear-gradient(45deg, #e0f2fe, #bae6fd);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Animated Background */
+        .himalayan-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%236366f1" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1440,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            animation: mountainFloat 20s ease-in-out infinite;
+            z-index: -2;
+        }
+
+        @keyframes mountainFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-30px) translateY(-20px); }
+        }
+
+        /* Snow Animation */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1em;
+            animation: snowfall linear infinite;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main Container - Interactive Sections */
+        .main-container {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 980px;
+            padding: 2rem;
+        }
+
+        .profile-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            object-fit: cover;
+            transition: all 0.5s ease;
+            animation: profileFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes profileFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #fff, #e0f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* NEW: quick contact on hero */
+        .contact-quick {
+            margin: 0 auto 2rem auto;
+            margin-top: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 1.2rem 1.5rem;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .contact-quick h3 {
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .contact-quick p {
+            margin: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+        .contact-quick a {
+            color: #e0f2fe;
+            text-decoration: none;
+        }
+        .contact-quick a:hover {
+            text-decoration: underline;
+        }
+        .contact-quick i {
+            margin-right: 0.4rem;
+        }
+
+        .section-menu {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .section-button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .section-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--ice-gradient);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: sectionSlideIn 0.6s ease;
+        }
+
+        @keyframes sectionSlideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: var(--glacier-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--glacier-gradient);
+        }
+
+        .close-section {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--glacier-blue);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-section:hover {
+            background: var(--mountain-purple);
+            transform: rotate(90deg);
+        }
+
+        /* Publications */
+        .pub-year-section {
+            margin-bottom: 2rem;
+        }
+
+        .year-button {
+            background: var(--glacier-blue);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .year-button:hover {
+            background: var(--mountain-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .publications-list {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .publications-list.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .publication-card {
+            background: var(--ice-white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--glacier-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .pub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--glacier-blue);
+        }
+
+        .pub-authors {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .pub-journal {
+            color: var(--mountain-purple);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .doi-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glacier-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30,58,138,0.3);
+        }
+
+        .doi-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30,58,138,0.4);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--glacier-gradient);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.8rem;
+            background: var(--ice-white);
+            border-radius: 15px;
+            margin-left: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--mountain-purple);
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(99,102,241,0.2);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--glacier-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Awards / Conferences Grid */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 1.8rem;
+            border-radius: 15px;
+            border-left: 5px solid #ffc107;
+            transition: all 0.4s ease;
+            transform: rotate(-1deg);
+        }
+
+        .award-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .award-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--ice-white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: left;
+            border: 2px solid var(--snow-crystal);
+            transition: all 0.4s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--glacier-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--glacier-blue);
+            margin-bottom: 0.7rem;
+        }
+
+        .skill-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--glacier-blue);
+            margin-bottom: 0.6rem;
+        }
+
+        /* References */
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ref-card {
+            background: var(--ice-white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #17a2b8;
+            transition: all 0.4s ease;
+        }
+
+        .ref-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .ref-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            color: var(--glacier-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ref-position {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Conferences styled like Awards */
+        .conference-year-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .conference-year-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--glacier-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .conference-year-title i {
+            color: var(--mountain-purple);
+        }
+
+        .conference-card p {
+            margin: 0.3rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.4rem; }
+            .section-menu { flex-direction: column; align-items: center; }
+            .section-button { width: 90%; justify-content: center; }
+            .awards-grid, .skills-grid, .ref-grid { grid-template-columns: 1fr; }
+            .section-content { padding: 2rem 1rem; }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="mountain-loader">
+            <div class="mountain-shape"></div>
+        </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="himalayan-bg"></div>
+    <div class="snow-container" id="snowContainer"></div>
+
+    <!-- Hero -->
+    <div class="main-container" id="mainContainer">
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <img src="https://github.com/lifeofcrazyboy/Amit_Singh_Portfolio/blob/d6bb2e11ad0b501640f1fc93b39dc8e6445e2a64/CE20D035.png?raw=true" alt="Amit Singh Chandel" class="profile-picture">
+                </div>
+                <h1 class="hero-title">Amit Singh Chandel</h1>
+                <p class="hero-subtitle">Himalayan Environmental Researcher | Project Associate, IIT Madras</p>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
+                    <i class="fas fa-microscope"></i> Ph.D. Environmental Engineering | Aerosol–Snow Interactions | High-altitude Atmospheric Measurements
+                </p>
+                <p style="margin-bottom: 1.5rem; font-size: 1.05rem; opacity: 0.85;">
+                    Specializing in aerosol-snow interaction, ice-nucleating particles, and snow albedo reduction over the Himalayas through integrated field measurements, optical characterization, and data-driven analysis.
+                </p>
+
+                <!-- NEW: Quick contact block -->
+                <div class="contact-quick">
+                    <h3>Contact me</h3>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:amitsingh.uoa@gmail.com">amitsingh.uoa@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919598620862">+91 95986 20862</a>
+                    </p>
+                    <p>
+                        <i class="fab fa-whatsapp"></i>
+                        <!-- WhatsApp number must be in full international format, no + or spaces -->
+                        <a href="https://wa.me/919598620862" target="_blank">WhatsApp call/message</a>
+                    </p>
+                </div>
+
+                <div class="section-menu">
+                    <button class="section-button" onclick="openSection('about')">
+                        <i class="fas fa-user"></i> About
+                    </button>
+                    <button class="section-button" onclick="openSection('research')">
+                        <i class="fas fa-microscope"></i> Research
+                    </button>
+                    <button class="section-button" onclick="openSection('skills')">
+                        <i class="fas fa-cogs"></i> Skills
+                    </button>
+                    <button class="section-button" onclick="openSection('education')">
+                        <i class="fas fa-graduation-cap"></i> Education
+                    </button>
+                    <button class="section-button" onclick="openSection('publications')">
+                        <i class="fas fa-file-alt"></i> Publications
+                    </button>
+                    <button class="section-button" onclick="openSection('conferences')">
+                        <i class="fas fa-podium"></i> Conferences
+                    </button>
+                    <button class="section-button" onclick="openSection('experience')">
+                        <i class="fas fa-briefcase"></i> Experience
+                    </button>
+                    <button class="section-button" onclick="openSection('workshops')">
+                        <i class="fas fa-chalkboard-teacher"></i> Workshops
+                    </button>
+                    <button class="section-button" onclick="openSection('awards')">
+                        <i class="fas fa-trophy"></i> Awards
+                    </button>
+                    <button class="section-button" onclick="openSection('contact')">
+                        <i class="fas fa-envelope"></i> Contact
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Section -->
+    <div id="about-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <button class="close-section" onclick="closeSection('about')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <img src="https://github.com/lifeofcrazyboy/Amit_Singh_Portfolio/blob/d6bb2e11ad0b501640f1fc93b39dc8e6445e2a64/CE20D035.png?raw=true" alt="Amit Singh Chandel" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1.5rem;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--glacier-blue); margin-bottom: 0.5rem;">
+                    Dr. Amit Singh Chandel
+                </h3>
+                <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 1rem;">
+                    Project Associate, Environmental Engineering Division, Department of Civil Engineering, IIT Madras, Chennai, India.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div style="background: var(--ice-white); padding: 2rem; border-radius: 15px;">
+                    <h4 style="font-family: 'Playfair Display', serif; color: var(--glacier-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-mountain"></i> Research Profile
+                    </h4>
+                    <p>
+                        Environmental researcher focusing on aerosol-snow interaction, snow albedo reduction, aerosol optical and microphysical properties, and ice-nucleating particles over the Western Himalayas.
+                    </p>
+                    <p>
+                        Experienced in integrating field-based atmospheric and cryospheric measurements with satellite remote sensing and advanced data analysis to understand climate impacts on the Himalayan cryosphere.
+                    </p>
+                </div>
+
+                <div style="background: var(--ice-white); padding: 2rem; border-radius: 15px;">
+                    <h4 style="font-family: 'Playfair Display', serif; color: var(--glacier-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-id-card"></i> Key Details
+                    </h4>
+                    <p><strong>Date of Birth:</strong> 10 November 1994</p>
+                    <p><strong>Languages:</strong> English, Hindi</p>
+                    <p><strong>Membership:</strong> European Geosciences Union (EGU), Member ID: 783764</p>
+                    <p><strong>Location:</strong> Chennai, India</p>
+                </div>
+
+                <div style="background: var(--ice-white); padding: 2rem; border-radius: 15px;">
+                    <h4 style="font-family: 'Playfair Display', serif; color: var(--glacier-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-hiking"></i> Hobbies & Interests
+                    </h4>
+                    <p>Hiking and trekking in mountain environments.</p>
+                    <p>Photography and documenting cryospheric landscapes.</p>
+                    <p>Travelling and exploring new regions and cultures.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <p style="font-size: 1.05rem; line-height: 1.8;">
+                    Through multi-season Himalayan field campaigns, advanced instrumentation, and collaborative projects in Finland and India, the work aims to bridge process-level understanding and regional climate implications for mountain cryosphere.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Section -->
+    <div id="research-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Research Interests</h2>
+                <button class="close-section" onclick="closeSection('research')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <h3 style="font-family:'Playfair Display',serif;color:var(--glacier-blue);margin-bottom:0.8rem;">Core Research Themes</h3>
+            <ul style="margin-left:1.5rem;margin-bottom:1.5rem;">
+                <li>Aerosol–snow interaction and snow albedo reduction over the Western Himalayas.</li>
+                <li>Field-based atmospheric and cryospheric measurements in high-altitude Himalayan sites.</li>
+                <li>Aerosol optical and microphysical properties during dust storms and polluted events.</li>
+                <li>Ice-nucleating particles and their role in cloud microphysics and regional climate.</li>
+                <li>Remote sensing and spatial analysis of atmospheric and cryospheric parameters.</li>
+                <li>Climate change impacts on glaciers and snow cover in mountain regions.</li>
+                <li>Statistical and machine-learning-based environmental data analysis.</li>
+            </ul>
+
+            <h3 style="font-family:'Playfair Display',serif;color:var(--glacier-blue);margin-bottom:0.8rem;">Fieldwork & Campaign Experience</h3>
+            <ul style="margin-left:1.5rem;">
+                <li>Multi-season field campaigns in the Western Himalayas, including snow sampling up to ~5000 m, glacier treks, and in situ measurements of aerosols and snow properties.</li>
+                <li>Deployment and calibration of nephelometer, aethalometer, SMPS, OPC, sun photometer, and related radiometric instruments under challenging field conditions.</li>
+                <li>Logistics and safety coordination for remote glacier expeditions and high-elevation sampling campaigns.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div id="skills-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Skills</h2>
+                <button class="close-section" onclick="closeSection('skills')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="skill-title">Technical Skills</div>
+                    <p><strong>Programming &amp; Tools:</strong> MATLAB, Python, Machine Learning, MS Office.</p>
+                    <p><strong>Modeling &amp; Analysis:</strong> HYSPLIT trajectory modelling, Q-GIS for spatial analysis.</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon"><i class="fas fa-flask"></i></div>
+                    <div class="skill-title">Research Skills</div>
+                    <p>Gravimetric analysis, statistical analysis, advanced data analysis, microscopic analysis.</p>
+                    <p>Field instrumentation, high-altitude sampling protocol design and execution.</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon"><i class="fas fa-sun"></i></div>
+                    <div class="skill-title">Instrumentation</div>
+                    <p>Nephelometer, aethalometer, SMPS, OPC, sun photometer, pyranometer, spectroradiometer.</p>
+                    <p>PM samplers, filtration systems, OC–EC analyser for carbonaceous aerosol characterization.</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <div class="skill-title">Data &amp; Analysis</div>
+                    <p>Time-series analysis, multivariate statistics, aerosol optical property retrievals.</p>
+                    <p>Handling large observational datasets, integrating in situ and satellite measurements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <div id="education-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Education</h2>
+                <button class="close-section" onclick="closeSection('education')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Sep 2020 – May 2025</div>
+                    <strong>Ph.D. in Environmental Engineering</strong><br>
+                    Indian Institute of Technology Madras, Chennai, India<br>
+                    <p><strong>Thesis:</strong> Optical and micro-physical characterization of aerosols during dust storms over the Western Himalayas.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2016 – 2018</div>
+                    <strong>Master of Science in Environmental Sciences</strong><br>
+                    University of Allahabad, Prayagraj, India<br>
+                    <p><strong>Dissertation:</strong> Aerosol optical and physical properties over four sites in the semi-arid zones.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2013 – 2016</div>
+                    <strong>Bachelor of Science in Biological Sciences</strong><br>
+                    Ewing Christian College, Prayagraj, India<br>
+                    <p>Biological Sciences with Chemistry and Botany as final-year subjects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Publications Section -->
+    <div id="publications-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Publications</h2>
+                <button class="close-section" onclick="closeSection('publications')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- NEW: Auto-loaded ORCID publications -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('orcid')">
+                    <i class="fas fa-calendar"></i> Latest from ORCID
+                </button>
+                <div id="pub-orcid" class="publications-list">
+                    <div id="orcid-publications">
+                        <div class="publication-card">
+                            <div class="pub-title">Loading publications from ORCID…</div>
+                            <div class="pub-journal">Please wait a moment.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Existing manual sections preserved below -->
+
+            <!-- 2025 -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('2025')">
+                    <i class="fas fa-calendar"></i> 2025 Publications
+                </button>
+                <div id="pub-2025" class="publications-list">
+                    <div class="publication-card">
+                        <div class="pub-title">In situ characterization of dust storms and their snow-darkening effect over Himalayas</div>
+                        <div class="pub-authors">Chandel, A.S., Sarangi, C., Rittger, K., Hooda, R.K., Hyvärinen, A.P.</div>
+                        <div class="pub-journal">Journal of Geophysical Research: Atmospheres, 130(2), e2024JD041874 (IF: 4.4)</div>
+                        <a href="https://doi.org/10.1029/2024JD041874" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1029/2024JD041874
+                        </a>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="pub-title">Investigating the Role of Meteorological Parameters in the Transport of Air Pollutants from LPG Tank Trailer Explosion in Jaipur, India</div>
+                        <div class="pub-authors">Suthar, G., Chandel, A.S., Singh, S.</div>
+                        <div class="pub-journal">Atmospheric Pollution Research, 102639 (IF: 3.9)</div>
+                        <a href="https://doi.org/10.1016/j.apr.2025.102639" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1016/j.apr.2025.102639
+                        </a>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="pub-title">Atmospheric deposition of anthropogenic microfibers in different indoor environments of Chennai, India</div>
+                        <div class="pub-authors">Jessieleena, A.A., Iniyan, K.E., Chandel, A.S., D’Sa, S.V., Nilofer, M., Nambi, I.M.</div>
+                        <div class="pub-journal">Atmospheric Pollution Research, 102629 (IF: 3.9)</div>
+                        <a href="https://doi.org/10.1016/j.apr.2025.102629" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1016/j.apr.2025.102629
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('2023')">
+                    <i class="fas fa-calendar"></i> 2023 Publications
+                </button>
+                <div id="pub-2023" class="publications-list">
+                    <div class="publication-card">
+                        <div class="pub-title">A scaling relation for cryoconite holes</div>
+                        <div class="pub-authors">Banerjee, A., Sarangi, C., Rashid, I., Vijay, S., Najar, N.A., &amp; Chandel, A.S.</div>
+                        <div class="pub-journal">Geophysical Research Letters, 50(22), e2023GL104942 (IF: 5.1)</div>
+                        <a href="https://doi.org/10.1029/2023GL104942" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1029/2023GL104942
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2021 -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('2021')">
+                    <i class="fas fa-calendar"></i> 2021 Publications
+                </button>
+                <div id="pub-2021" class="publications-list">
+                    <div class="publication-card">
+                        <div class="pub-title">Aerosol properties over desert influenced locations situated in four different continents</div>
+                        <div class="pub-authors">Soni, M., Chandel, A.S., Verma, S., Payra, S., Prakash, D., Holben, B.</div>
+                        <div class="pub-journal">Atmospheric Environment, 118232 (IF: 5.76)</div>
+                        <a href="https://doi.org/10.1016/j.atmosenv.2021.118232" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1016/j.atmosenv.2021.118232
+                        </a>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="pub-title">Impact of climate change and water quality degradation on food security and agriculture</div>
+                        <div class="pub-authors">Gupta, P., Singh, J., Verma, S., Chandel, A.S., &amp; Bhatla, R.</div>
+                        <div class="pub-journal">In Water Conservation in the Era of Global Climate Change, Elsevier, pp. 1–22</div>
+                        <a href="https://doi.org/10.1016/B978-0-12-820200-5.00006-3" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1016/B978-0-12-820200-5.00006-3
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2020 -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('2020')">
+                    <i class="fas fa-calendar"></i> 2020 Publications
+                </button>
+            </div>
+            <div id="pub-2020" class="publications-list">
+                <div class="publication-card">
+                    <div class="pub-title">Validation of surface temperature derived from MERRA-2 Reanalysis against IMD gridded data set over India</div>
+                    <div class="pub-authors">Gupta, P., Verma, S., Bhatla, R., Chandel, A.S., Singh, J., &amp; Payra, S.</div>
+                    <div class="pub-journal">Earth and Space Science, 7, e2019EA000910 (IF: 3.68)</div>
+                    <a href="https://doi.org/10.1029/2019EA000910" class="doi-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> DOI: 10.1029/2019EA000910
+                    </a>
+                </div>
+            </div>
+
+            <!-- Conference Proceedings -->
+            <div class="pub-year-section">
+                <button class="year-button" onclick="togglePublications('confproc')">
+                    <i class="fas fa-calendar"></i> Conference Proceedings
+                </button>
+                <div id="pub-confproc" class="publications-list">
+                    <div class="publication-card">
+                        <div class="pub-title">Identification of Elevated Aerosol Layers and their properties by using ground-based aerosol measurements over the foothills of the central Himalayas</div>
+                        <div class="pub-authors">Chandel, A.S., Sarangi, C., Hooda, R., &amp; Hyvärinen, A.</div>
+                        <div class="pub-journal">2022 URSI Regional Conference on Radio Science (URSI-RCRS), pp. 1–4. IEEE (IF: 3.47)</div>
+                        <a href="https://doi.org/10.23919/URSI-RCRS56822.2022.10118448" class="doi-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.23919/URSI-RCRS56822.2022.10118448
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conferences Section -->
+    <div id="conferences-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Conference Presentations</h2>
+                <button class="close-section" onclick="closeSection('conferences')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- 2025 -->
+            <div class="conference-year-block fade-in">
+                <div class="conference-year-title">
+                    <i class="fas fa-calendar-alt"></i> 2025 Conferences
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            American Geophysical Union (AGU) Fall Meeting 2025
+                        </div>
+                        <p><em>15–19 December 2025 • New Orleans, Louisiana, USA</em></p>
+                        <p>Seasonal and Episodic Variability of Ice Nucleating Particles Derived from Daily Aerosol Filter Samples in the Western Himalayas – <strong>Poster Presentation</strong>.</p>
+                    </div>
+
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            International Symposium on Tropical Meteorology (INTROMET 2025)
+                        </div>
+                        <p><em>18–20 November 2025 • IITM Pune, India</em></p>
+                        <p>Seasonal and Episodic Variability of Ice‑Nucleating Particles in the Western Himalayas – <strong>Poster Presentation</strong>.</p>
+                    </div>
+
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            European Geosciences Union (EGU) General Assembly 2025
+                        </div>
+                        <p><em>27 April – 2 May 2025 • Vienna, Austria</em></p>
+                        <p>Characterization and impacts of pre-monsoonal dust events on aerosol optical properties and snow albedo in the Indian Himalayas – <strong>Oral Presentation</strong>.</p>
+                    </div>
+
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            Polar Winter Climate and Processes Conference
+                        </div>
+                        <p><em>23–25 April 2025 • British Antarctic Survey, Cambridge, UK</em></p>
+                        <p>Unveiling the hidden culprit: How dust storms accelerate Himalayan glacier melt – <strong>Online Oral Presentation</strong>.</p>
+                    </div>
+
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            Second Indian Cryosphere Meet (ICM 2025)
+                        </div>
+                        <p><em>14–15 February 2025 • IIT Bombay, India</em></p>
+                        <p>Unveiling the impact of black carbon and dust on snow albedo reduction in the northwestern Indian Himalayas – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="conference-year-block fade-in">
+                <div class="conference-year-title">
+                    <i class="fas fa-calendar-alt"></i> 2024 Conferences
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            European Aerosol Conference 2024
+                        </div>
+                        <p><em>25–30 August 2024 • Tampere, Finland</em></p>
+                        <p>Quantifying the refractive index of dust storms over the Himalayas – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            Indian Cryosphere Meet (ICM‑2024)
+                        </div>
+                        <p><em>11–12 January 2024 • IIT Ropar, India</em></p>
+                        <p>Assessing the impact of light‑absorbing particles on snow albedo over the Western Himalaya – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="conference-year-block fade-in">
+                <div class="conference-year-title">
+                    <i class="fas fa-calendar-alt"></i> 2023 Conferences
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            Indian Aerosol Science and Technology Association (IASTA‑2023)
+                        </div>
+                        <p><em>12–14 December 2023 • Navi Mumbai, India</em></p>
+                        <p>Diurnal variation of black carbon over Machoi glacier in Kashmir – <strong>Poster Presentation</strong>.</p>
+                    </div>
+
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            National Workshop on Atmospheric Aerosol Measurements</div>
+                        <p><em>26–28 July 2023 • NABHA Laboratory, Kerala, India</em></p>
+                        <p>Can heavy dust episodes also enhance black carbon over the Himalayas? – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2022 -->
+            <div class="conference-year-block fade-in">
+                <div class="conference-year-title">
+                    <i class="fas fa-calendar-alt"></i> 2022 Conferences
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            URSI Regional Conference on Radio Science (URSI‑RCRS)
+                        </div>
+                        <p><em>1–4 December 2022 • IIT Indore, India</em></p>
+                        <p>Identification of elevated aerosol layers and their properties by using ground-based aerosol measurements over the foothills of the central Himalayas – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2018 -->
+            <div class="conference-year-block fade-in">
+                <div class="conference-year-title">
+                    <i class="fas fa-calendar-alt"></i> 2018 Conferences
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card conference-card">
+                        <div class="award-title">
+                            National Conference on Innovative Trends in Civil Engineering
+                        </div>
+                        <p><em>13–14 April 2018 • Poornima University, Jaipur, India</em></p>
+                        <p>Aerosol properties over semi-arid region – <strong>Oral Presentation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div id="experience-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <button class="close-section" onclick="closeSection('experience')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Aug 2025 – Present</div>
+                    <strong>Project Associate</strong><br>
+                    Environmental Engineering Division, IIT Madras, Chennai, India<br>
+                    <p>Advanced research on Himalayan aerosol–snow interactions, snow albedo reduction, and cryosphere–climate linkages using field data and modelling.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Feb 2025 – Aug 2025</div>
+                    <strong>Post-Doctoral Equivalent Fellow</strong><br>
+                    IIT Madras, Chennai, India<br>
+                    <p>Post-doctoral level research on aerosol–snow interaction and climate impacts on the Himalayan cryosphere.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Sep 2020 – May 2025</div>
+                    <strong>Ph.D. Research Scholar</strong><br>
+                    IIT Madras, Chennai, India<br>
+                    <p>Doctoral research on optical and micro-physical characterization of aerosols during dust storms over the Western Himalayas.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Aug – Oct 2024</div>
+                    <strong>Visiting Scholar</strong><br>
+                    Finnish Meteorological Institute, Helsinki, Finland<br>
+                    <p>International collaboration on Arctic and Himalayan atmospheric research, focusing on dust and light-absorbing particles.</p>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2018 – 2019</div>
+                    <strong>Junior Research Fellow</strong><br>
+                    Banaras Hindu University, Varanasi, India<br>
+                    <p>Research on atmospheric aerosols and environmental monitoring in the Indo-Gangetic Plains.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workshops Section -->
+    <div id="workshops-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Workshops &amp; Training</h2>
+                <button class="close-section" onclick="closeSection('workshops')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">4–7 Mar 2024</div>
+                    <strong>Introduction to MATLAB</strong><br>
+                    AIRSS, IIT Madras, Chennai, India.
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">4–7 Mar 2024</div>
+                    <strong>AI Augmented Manuscript Writing &amp; Publishing</strong><br>
+                    AIRSS, IIT Madras, Chennai, India.
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">4–7 Dec 2023</div>
+                    <strong>Climate Impacts of Carbonaceous Aerosols and Measurements</strong><br>
+                    National Training Workshop, IITM Pune, India.
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">27 Nov – 1 Dec 2023</div>
+                    <strong>Technical and Scientific Writing</strong><br>
+                    IIT Madras, Chennai, India.
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">26–28 Jul 2023</div>
+                    <strong>Atmospheric Aerosol Measurements and Modeling over India</strong><br>
+                    NABHA Laboratory, College of Engineering Munnar, Kerala, India.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Awards Section -->
+    <div id="awards-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Awards &amp; Grants</h2>
+                <button class="close-section" onclick="closeSection('awards')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="awards-grid">
+                <div class="award-card fade-in">
+                    <div class="award-title">International Travel Support</div>
+                    <p>ANRF-DST, Government of India (2025).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Second Best Oral Presentation</div>
+                    <p>Indian Cryosphere Meet (ICM‑2025), 2025.</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">International Immersion Experience</div>
+                    <p>IIT Madras (2024).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Third Best Poster Presentation</div>
+                    <p>IASTA‑2023 (2023).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Travel Grant</div>
+                    <p>IASTA‑2023 (2023).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">UGC NET JRF</div>
+                    <p>Secured research fellowship from Government of India (2020).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">GATE Qualified</div>
+                    <p>GATE (2020).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">UGC NET in Environmental Sciences</div>
+                    <p>Qualified in 2019 and 2020.</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Best Oral Presentation</div>
+                    <p>National Conference on Innovative Trends in Civil Engineering (2018).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Mahindra Finance Scholarship</div>
+                    <p>Scholarship for Graduate Studies (2015).</p>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-title">Child Scientist Award</div>
+                    <p>National Children's Science Congress (2010).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact & References -->
+    <div id="contact-section" class="section-container">
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Contact &amp; References</h2>
+                <button class="close-section" onclick="closeSection('contact')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div style="background: var(--ice-white); padding: 2rem; border-radius: 15px;">
+                    <h3 style="font-family: 'Playfair Display', serif; color: var(--glacier-blue); margin-bottom: 1.5rem;">
+                        <i class="fas fa-address-card"></i> Contact Information
+                    </h3>
+                    <p><strong>Email:</strong> <a href="mailto:amitsingh.uoa@gmail.com" style="color: var(--glacier-blue);">amitsingh.uoa@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+919598620862" style="color: var(--glacier-blue);">+91 95986 20862</a></p>
+                    <!-- Optional: WhatsApp shortcut inside contact section as well -->
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919598620862" style="color: var(--glacier-blue);" target="_blank">Message / Call on WhatsApp</a></p>
+                    <p><strong>Institution:</strong> IIT Madras, Chennai, India</p>
+                    <p><strong>Division:</strong> Environmental Engineering Division, Department of Civil Engineering</p>
+                    <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                        <a href="https://www.linkedin.com/in/amit-singh-chandel" target="_blank" class="doi-link">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://orcid.org/0000-0001-5732-4725" target="_blank" class="doi-link">
+                            <i class="fab fa-orcid"></i> ORCID
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-family: 'Playfair Display', serif; color: var(--glacier-blue); margin-bottom: 1.5rem;">
+                        <i class="fas fa-user-friends"></i> References
+                    </h3>
+                    <div class="ref-grid">
+                        <div class="ref-card fade-in">
+                            <div class="ref-name">Dr. Chandan Sarangi</div>
+                            <div class="ref-position">Associate Professor, Dept. of Civil Engineering</div>
+                            <div>IIT Madras, Chennai, India</div>
+                            <div>📧 <a href="mailto:chandansarangi@civil.iitm.ac.in">chandansarangi@civil.iitm.ac.in</a></div>
+                            <div>📱 +91 93378 30346</div>
+                        </div>
+                        <div class="ref-card fade-in">
+                            <div class="ref-name">Dr. Sachin S. Gunthe</div>
+                            <div class="ref-position">Professor, Dept. of Civil Engineering</div>
+                            <div>IIT Madras, Chennai, India</div>
+                            <div>📧 <a href="mailto:s.gunthe@iitm.ac.in">s.gunthe@iitm.ac.in</a></div>
+                            <div>📱 +91 99626 04979</div>
+                        </div>
+                        <div class="ref-card fade-in">
+                            <div class="ref-name">Dr. Rakesh Kumar Hooda</div>
+                            <div class="ref-position">Senior Research Scientist</div>
+                            <div>Finnish Meteorological Institute, Helsinki, Finland</div>
+                            <div>📧 <a href="mailto:rakesh.hooda@fmi.fi">rakesh.hooda@fmi.fi</a></div>
+                            <div>📱 +358 50 401 4544</div>
+                        </div>
+                        <div class="ref-card fade-in">
+                            <div class="ref-name">Dr. Vijay Kanawade</div>
+                            <div class="ref-position">Research Scientist</div>
+                            <div>The Cyprus Institute, Nicosia, Cyprus</div>
+                            <div>📧 <a href="mailto:v.kanawade@cyi.ac.cy">v.kanawade@cyi.ac.cy</a></div>
+                            <div>📱 +91 94901 69579</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    document.getElementById('mainContainer').style.display = 'block';
+                }, 1000);
+            }, 2000);
+            createSnowflakes();
+            loadOrcidPublications(); // NEW: load ORCID works when page ready
+        });
+
+        function createSnowflakes() {
+            const snowContainer = document.getElementById('snowContainer');
+            const snowflakes = ['❄', '❅', '❆', '✻', '✼', '❋'];
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.animationDelay = Math.random() * 2 + 's';
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        function openSection(sectionName) {
+            const section = document.getElementById(sectionName + '-section');
+            if (!section) return;
+            section.style.display = 'block';
+            section.style.opacity = '1';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSection(sectionName) {
+            const section = document.getElementById(sectionName + '-section');
+            if (!section) return;
+            section.style.opacity = '0';
+            setTimeout(() => {
+                section.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+
+        function togglePublications(year) {
+            const pubList = document.getElementById('pub-' + year);
+            if (!pubList) return;
+            const isActive = pubList.classList.contains('active');
+            document.querySelectorAll('.publications-list').forEach(list => list.classList.remove('active'));
+            if (!isActive) pubList.classList.add('active');
+        }
+
+        // NEW: ORCID auto-publications loader
+        async function loadOrcidPublications() {
+            const orcidId = "0000-0001-5732-4725";
+            const url = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+            const container = document.getElementById("orcid-publications");
+            if (!container) return;
+
+            try {
+                const res = await fetch(url, {
+                    headers: { "Accept": "application/json" }
+                });
+                if (!res.ok) {
+                    container.innerHTML = `
+                        <div class="publication-card">
+                            <div class="pub-title">Could not load ORCID publications.</div>
+                            <div class="pub-journal">Status: ${res.status}</div>
+                        </div>`;
+                    return;
+                }
+
+                const data = await res.json();
+                const works = data.group || [];
+                container.innerHTML = "";
+
+                // Sort, newest year first
+                works.sort((a, b) => {
+                    const sa = a["work-summary"] && a["work-summary"][0];
+                    const sb = b["work-summary"] && b["work-summary"][0];
+                    const ya = sa && sa["publication-date"] && sa["publication-date"].year && sa["publication-date"].year.value;
+                    const yb = sb && sb["publication-date"] && sb["publication-date"].year && sb["publication-date"].year.value;
+                    return (yb || 0) - (ya || 0);
+                });
+
+                works.forEach(group => {
+                    const summary = group["work-summary"] && group["work-summary"][0];
+                    if (!summary) return;
+
+                    const title = summary.title && summary.title.title && summary.title.title.value || "Untitled";
+                    const year = summary["publication-date"]
+                        && summary["publication-date"].year
+                        && summary["publication-date"].year.value;
+                    const journal = summary["journal-title"] && summary["journal-title"].value;
+                    const externalIds = summary["external-ids"] && summary["external-ids"]["external-id"] || [];
+                    const doiObj = externalIds.find(e => e["external-id-type"] === "doi");
+                    const doi = doiObj && doiObj["external-id-value"];
+                    const doiUrl = doi ? `https://doi.org/${doi}` : null;
+
+                    const card = document.createElement("div");
+                    card.className = "publication-card";
+                    card.innerHTML = `
+                        <div class="pub-title">${title}</div>
+                        ${journal ? `<div class="pub-journal">${journal}</div>` : ""}
+                        ${year ? `<div class="pub-authors">Year: ${year}</div>` : ""}
+                        ${doiUrl ? `<a class="doi-link" href="${doiUrl}" target="_blank">
+                                        <i class="fas fa-link"></i> DOI
+                                    </a>` : ""}
+                    `;
+                    container.appendChild(card);
+                });
+
+                if (!container.innerHTML.trim()) {
+                    container.innerHTML = `
+                        <div class="publication-card">
+                            <div class="pub-title">No public works found on ORCID.</div>
+                            <div class="pub-journal">Please ensure your publications are visible on your ORCID record.</div>
+                        </div>`;
+                }
+            } catch (err) {
+                container.innerHTML = `
+                    <div class="publication-card">
+                        <div class="pub-title">Error loading ORCID publications.</div>
+                        <div class="pub-journal">${err.message}</div>
+                    </div>`;
+            }
+        }
+
+        // Scroll reveal animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .publication-card, .award-card, .skill-card, .ref-card, .conference-year-block').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
